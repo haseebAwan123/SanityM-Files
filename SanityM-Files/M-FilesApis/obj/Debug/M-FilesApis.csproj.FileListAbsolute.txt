@@ -1,0 +1,10 @@
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\bin\Debug\M-FilesApis.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\bin\Debug\M-FilesApis.pdb
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\bin\Debug\Newtonsoft.Json.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\bin\Debug\RestSharp.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\bin\Debug\Newtonsoft.Json.xml
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.csproj.CoreCompileInputs.cache
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.csproj.CopyComplete
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.pdb
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.csprojAssemblyReference.cache

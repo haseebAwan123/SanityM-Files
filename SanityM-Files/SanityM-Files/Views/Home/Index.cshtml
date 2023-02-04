@@ -1,31 +1,217 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using MFaaP.MFWSClient
+
+@{
+    ViewBag.Title = "M-Files";
+    Layout = "~/Views/Shared/_Navbar.cshtml";
+
+
+}
+@{  
+    List<FolderContentItem> views = new List<FolderContentItem>();
+    List<FolderListingColumn> Headers = new List<FolderListingColumn>();
+    List<PropertyValue> propertyList = new List<PropertyValue>();
+    List<PropertyDef> Properties = new List<PropertyDef>();
+    Properties = ViewBag.PropertyList;
+    List<ExtendedObjectClass> Classes = new List<ExtendedObjectClass>();
+    Classes = ViewBag.classes;
+
+    if (!object.ReferenceEquals(null, ViewBag.Views))
+    {
+        views = ViewBag.Views.Items;
+        Headers = ViewBag.Views.FolderUIState.ListingUIState.Columns;
+
+    }
+    if(!object.ReferenceEquals(null, ViewBag.MetaData))
+    {
+        propertyList = ViewBag.MetaData;
+    }
+
+    var VID = ViewBag.VID;
+
+
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<br />
+<br />
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link" id="home-tab" data-toggle="tab" href="#Recent" role="tab" aria-controls="Recent" aria-selected="true">Recent</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#All" role="tab" aria-controls="All" aria-selected="false">All</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Pinned" role="tab" aria-controls="Pinned" aria-selected="false">Pinned</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade" id="Recent" role="tabpanel" aria-labelledby="Recent-tab">
+        <div class="row">
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col-5">
+                2 of 3 (wider)
+            </div>
+            <div class="col">
+                3 of 3
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade  show active" id="All" role="tabpanel" aria-labelledby="All-tab">
+        <div class="row">
+            <div class="col border-right">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            @{
+                                foreach (var item in Headers)
+                                {
+                                    var isVisible = item.Name == "Type" || item.Name == "Name" ? "visible" : "hidden";
+                                    if(isVisible == "visible")
+                                    {
+                                     <th scope="col" style="visibility:@isVisible">@item.Name</th>
+                                    }
+                                }
+                            }
+
+                            @*<th scope="col">Type</th>*@
+
+                        </tr>
+                    </thead>
+                    
+                       
+
+                    <tbody>
+                        @{
+                            foreach (var item in views)
+                            {
+                                if (!object.ReferenceEquals(null, item.View))
+                                {
+                                    var url = "/Home/getViewItems?VID=" + item.View.ID;
+                                    <tr>
+                                        <td><img src="http://127.0.0.1/assets/icons/svg/listing_common_view.svg" /></td>
+
+                                        <td><a href=@url>@item.View.Name</a></td>
+                                        <td>View</td>
+                                    </tr>
+                                }
+                                else if (!object.ReferenceEquals(null, item.PropertyFolder))
+                                {
+
+                                    var url = "/Home/getSubViewItems?VID=" + VID + "&&LID=" + item.PropertyFolder.SerializedValue;
+                                    <tr>
+                                        <td><img src="http://127.0.0.1/assets/icons/svg/listing_common_view.svg" /></td>
+
+                                        <td><a href=@url>@item.PropertyFolder.DisplayValue</a></td>
+                                        <td>View</td>
+                                    </tr>
+                                }
+                                else if (!object.ReferenceEquals(null, item.ObjectVersion))
+                                {
+
+                                    var url = "/Home/getMetaData?type=" + item.ObjectVersion.ObjVer.Type + "&&ID=" + item.ObjectVersion.ObjVer.ID+"&&version="+ item.ObjectVersion.ObjVer.Version;
+                                    <tr>
+                                        <td><img src="http://127.0.0.1/assets/icons/svg/default.svg" /></td>
+
+                                        <td><a href=@url>@item.ObjectVersion.Title</a></td>
+                                        <td>View</td>
+                                    </tr>
+                                }
+                            }
+
+
+                        }
+                    </tbody>
+
+
+                       
+
+                </table>
+            </div>
+            <div class="col-5 border-right">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">MetaData</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <table class="table">
+                    
+                    <tbody>
+                        @{
+                            if (Properties != null && Classes != null)
+                            {
+                                var Mclass = propertyList.Where(x => x.PropertyDef == 100).ToList<PropertyValue>()[0];
+                                var cname = Mclass.TypedValue.DisplayValue;
+                                //var objectClass = Classes.Where(x => x.ID == Mclass);
+
+                            }
+                            foreach (var item in propertyList)
+                            {
+                                var labelName = Properties.Where(x => x.ID == item.PropertyDef).ToList<PropertyDef>();
+                                //var isVisible = Classes.Where(x=>x.)
+                                <tr>
+                                    <td>
+                                        
+                                         @labelName[0].Name
+                                    </td>
+                                    <td>
+                                        @item.TypedValue.DisplayValue
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+
+
+
+                </table>
+
+
+            </div>
+            <div class="col">
+               No Preview Loaded
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="Pinned" role="tabpanel" aria-labelledby="Pinned-tab">
+        <div class="row">
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col-5">
+                2 of 3 (wider)
+            </div>
+            <div class="col">
+                3 of 3
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@*<ul id="myUL">
+        <li>
+            <span class="caret">Common View</span>
+            <ul class="nested">
+                <li>Water</li>
+                <li>Coffee</li>
+
+            </ul>
+        </li>
+        <li>
+            <span class="caret">Other Views</span>
+            <ul class="nested">
+                <li>Sencha</li>
+                <li>Gyokuro</li>
+                <li>Matcha</li>
+                <li>Pi Lo Chun</li>
+            </ul>
+        </li>
+    </ul>*@

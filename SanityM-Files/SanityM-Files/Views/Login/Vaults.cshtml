@@ -1,0 +1,119 @@
+﻿@using MFaaP.MFWSClient;
+
+@{
+    ViewBag.Title = "Vaults";
+    List<Vault> Vaults = ViewBag.Vaults;
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>M-Files Login</title>
+    <link href="~/Content/selectVaults.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   
+</head>
+<body>
+    <div class="login-form">
+        @*<form action="/Login/Index" method="post">*@
+
+        <div class="container">
+            <div class="row">
+
+                <div class="dual-list list-right col-md-5">
+                    <div class="wellc">
+                        <h3 style="color:white">Select Vault</h3>
+                     
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="dual-list list-right col-md-5">
+                    <div class="well" style="padding: 0px">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                                    <span class="input-group-addon glyphicon glyphicon-search"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group">
+                            @{
+                                if (Vaults != null)
+                                {
+                                    foreach (var item in Vaults)
+                                    {
+                                        <li class="list-group-item">@item.Name</li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="list-group-item">No Vault Available</li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        @*</form>*@
+
+    </div>
+    <script>
+        $(function () {
+
+          
+            $('.list-arrows button').click(function () {
+                var $button = $(this), actives = '';
+                if ($button.hasClass('move-left')) {
+                    actives = $('.list-right ul li.active');
+                    actives.clone().appendTo('.list-left ul');
+                    actives.remove();
+                } else if ($button.hasClass('move-right')) {
+                    actives = $('.list-left ul li.active');
+                    actives.clone().appendTo('.list-right ul');
+                    actives.remove();
+                }
+            });
+            $('.dual-list .selector').click(function () {
+                var $checkBox = $(this);
+                if (!$checkBox.hasClass('selected')) {
+                    $checkBox.addClass('selected').closest('.well').find('ul li:not(.active)').addClass('active');
+                    $checkBox.children('i').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+                } else {
+                    $checkBox.removeClass('selected').closest('.well').find('ul li.active').removeClass('active');
+                    $checkBox.children('i').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+                }
+            });
+            $('[name="SearchDualList"]').keyup(function (e) {
+                var code = e.keyCode || e.which;
+                if (code == '9') return;
+                if (code == '27') $(this).val(null);
+                var $rows = $(this).closest('.dual-list').find('.list-group li');
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+
+

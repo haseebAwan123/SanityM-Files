@@ -1,0 +1,33 @@
+﻿/*.dual-list .list-group {
+    margin-top: 50px;
+}*/
+
+.list-left li, .list-right li {
+    cursor: pointer;
+}
+.wellc {
+    background-color: #337ab7;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+.list-arrows {
+    padding-top: 100px;
+}
+
+    .list-arrows button {
+        margin-bottom: 20px;
+    }
+
+.login-form {
+    background-color: #f0f8ff;
+    width: 340px;
+    margin: 50px auto;
+    font-size: 15px;
+}
+.form1 {
+        border: #f7f0f0 2px solid;
+        margin-top: 50%;
+        background: #ffffff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
