@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace M_FilesApis.Object
 {
     public class MObjects
@@ -48,7 +49,7 @@ namespace M_FilesApis.Object
 
         public dynamic getObjectMetaData(string baseUrl,int ObjectType,int ObjectID,int ObjectVersion, string key)
         {
-            var propertyList = new List<PropertyValue>();
+            var propertyList = new List<dynamic>();
             try
             {
                 var client = new RestClient(baseUrl + "/objects/"+ ObjectType +"/"+ ObjectID +"/"+ ObjectVersion +"/properties");
@@ -58,7 +59,7 @@ namespace M_FilesApis.Object
                 request.AddHeader("X-Authentication", key);
                 request.AddHeader("Cookie", "ASP.NET_SessionId=kcm5k1qqe4cnfunlmaemagqe");
                 IRestResponse response = client.Execute(request);
-                propertyList = JsonConvert.DeserializeObject<List<PropertyValue>>(response.Content); 
+                propertyList = JsonConvert.DeserializeObject<List<dynamic>>(response.Content); 
             }
             catch (Exception ex)
             {
@@ -69,6 +70,28 @@ namespace M_FilesApis.Object
         }
 
 
+        public dynamic getObjectRecentlyAccessedByMe(string baseUrl, string key)
+        {
+            var objectVersion1 = new ObjectVersion();
+            try
+            {
+                var client = new RestClient(baseUrl + "/recentlyaccessedbyme");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("X-Authentication", key);
+                request.AddHeader("Cookie", "ASP.NET_SessionId=kcm5k1qqe4cnfunlmaemagqe");
+                IRestResponse response = client.Execute(request);
+                objectVersion1 = JsonConvert.DeserializeObject<ObjectVersion>(response.Content);
+               
+            }
+            catch (Exception ex)
+            {
+                return objectVersion1;
+
+            }
+            return objectVersion1;
+        }
 
 
 

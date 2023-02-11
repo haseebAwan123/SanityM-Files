@@ -1,0 +1,201 @@
+﻿
+@using MFaaP.MFWSClient
+@using SanityM_Files.Models;
+@{
+
+    List<dynamic> propertyList = new List<dynamic>();
+    List<PropertyDef> Properties = new List<PropertyDef>();
+    Properties = ViewBag.PropertyList;
+    List<ExtendedObjectClass> Classes = new List<ExtendedObjectClass>();
+    Classes = ViewBag.classes;
+
+    CObjects mp = new CObjects();
+
+    var RestrictedProperties = new List<string>();
+    RestrictedProperties.Add("20");
+    RestrictedProperties.Add("21");
+    RestrictedProperties.Add("22");
+    RestrictedProperties.Add("23");
+    RestrictedProperties.Add("24");
+    RestrictedProperties.Add("25");
+    RestrictedProperties.Add("30");
+    RestrictedProperties.Add("31");
+    RestrictedProperties.Add("32");
+    RestrictedProperties.Add("81");
+    RestrictedProperties.Add("89");
+    RestrictedProperties.Add("101");
+
+
+    if (!object.ReferenceEquals(null, ViewBag.MetaData))
+    {
+        propertyList = ViewBag.MetaData;
+    }
+
+
+
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr style="border-bottom:solid">
+            <th scope="col">MetaData</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="5" scope="col">Admin</td>
+            <td scope="col">ID9</td>
+        </tr>
+        <tr>
+            <td colspan="5" scope="col" style="border:hidden">Employee</td>
+            <td scope="col" style="border:hidden">Version1</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered table-striped" id="bindData">
+    <tbody>
+        @{
+            //int Cid = 0;
+            //if (Properties != null && Classes != null)
+            //{
+            //    var Mclass = propertyList.Where(x => x.PropertyDef == 100).ToList<PropertyValue>()[0];
+            //    Cid = Convert.ToInt32(Mclass.TypedValue.SerializedValue);
+
+            //    //var ac = objectClass
+
+            //}
+            //var objectClass = Classes.Where(x => x.ID == Cid).ToList<ExtendedObjectClass>();
+            var list = new List<string>();
+            foreach (var item in propertyList)
+            {
+
+                var asasa = item.PropertyDef.Value;
+                var labelName = Properties.Where(x => x.ID == item.PropertyDef.Value).ToList<PropertyDef>();
+                string DT = Convert.ToString(item.TypedValue.DataType.Value);
+
+                if (!RestrictedProperties.Contains(item.PropertyDef.ToString()))
+                {
+                    <tr>
+                        <td>
+
+                            @labelName[0].Name
+                        </td>
+                        <td>
+
+                            @{
+                                var Valuelist = mp.GetPropertyValueList(labelName[0].ValueList);
+                                switch (DT)
+                                {
+                                    case "1":
+                                        <input type="text" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "2":
+                                        <input type="number" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "3":
+                                        <input type="number" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "5":
+                                        string date = item.TypedValue.DisplayValue.Value;
+                                        date = Convert.ToDateTime(date).ToString("yyyy-MM-dd");
+
+                                        <input type="date" class="form-control" value="@date">
+                                        break;
+
+                                    case "6":
+                                        string time = item.TypedValue.DisplayValue.Value;
+                                        time = Convert.ToDateTime(time).ToString("HH:mm");
+
+                                        <input type="time" class="form-control" value="@time">
+                                        break;
+
+                                    case "7":
+                                        string value = item.TypedValue.DisplayValue.Value;
+                                        value = Convert.ToDateTime(value.Replace('/', '-')).ToString("yyyy-MM-dd HH:mm");
+                                        value = value.Replace(' ', 'T');
+
+                                        <input type="datetime-local" class="form-control" value="@value">
+                                        break;
+
+                                    case "8":
+
+
+                                        <input type="text" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "9":
+
+
+                                        <select class="form-control" aria-label="Default select example">
+                                            
+                                            @{
+                                                foreach (var item1 in Valuelist.Items)
+                                                {
+
+                                                    <option @(item1.Name == item.TypedValue.DisplayValue.Value ? "selected" : "") value="@item1.ID">@item1.Name</option>
+
+                                                }
+                                            }
+                                        </select>
+                                                    // <input type="text" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                                    break;
+
+                                       case "10":
+
+                                       var items = item.TypedValue.DisplayValue.Value.Split(';');
+
+                                         foreach (var mlist in items)
+                                          {
+                                        <select class="form-control" aria-label="Default select example">
+                                           
+                                            @{
+                                                foreach (var item1 in Valuelist.Items)
+                                                {
+
+                                                    <option @(item1.Name == mlist.Trim() ? "selected" : "") value="@item1.ID">@item1.Name</option>
+
+                                                }
+                                            }
+                                        </select>
+                                          }
+
+                                        //<input type="text" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "11":
+                                        <input type="number" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "12":
+                                        <input type="text" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+                                    case "13":
+                                        <textarea class="form-control" rows="4" cols="50">@item.TypedValue.DisplayValue.Value </textarea>
+                                        break;
+
+                                    case "14":
+                                        <input type="text" class="form-control" value="@item.TypedValue.DisplayValue.Value">
+                                        break;
+
+
+
+                                }
+
+                            }
+                        </td>
+
+
+                    </tr>
+                }
+            }
+
+
+
+        }
+    </tbody>
+</table>

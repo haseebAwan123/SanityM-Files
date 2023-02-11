@@ -1,4 +1,5 @@
 ﻿using M_FilesApis.Authentication;
+using M_FilesApis.MPropertyValue;
 using M_FilesApis.Object;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,45 @@ namespace SanityM_Files.Models
             
         }
 
+        public dynamic getObjectRecentlyAccessedByMe(string userName, string password)
+        {
+            // var viewsList = new FolderContentItems();
+            try
+            {
+                Login auth = new Login();
+                string vaultGuid = "{65CE6D22-8BF6-4D00-A461-42F8263F4066}";
+                string authKey = auth.LoginToServer(baseUrl, userName, password, vaultGuid);
+                MObjects obj = new MObjects();
+                var res = obj.getObjectRecentlyAccessedByMe(baseUrl, authKey);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
 
+            }
+
+        }
+
+        public dynamic GetPropertyValueList(int ValueListID)
+        {
+            // var viewsList = new FolderContentItems();
+            try
+            {
+                Login auth = new Login();
+                string vaultGuid = "{65CE6D22-8BF6-4D00-A461-42F8263F4066}";
+                string authKey = auth.LoginToServer(baseUrl, "Admin", "123", vaultGuid);
+                MPropertyValue obj = new MPropertyValue();
+                var res = obj.GetPropertyValueList(baseUrl, authKey, ValueListID);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+
+            }
+
+        }
 
     }
 }

@@ -7,4 +7,3 @@ D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debu
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.csproj.CopyComplete
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.pdb
-D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\M-FilesApis\obj\Debug\M-FilesApis.csprojAssemblyReference.cache

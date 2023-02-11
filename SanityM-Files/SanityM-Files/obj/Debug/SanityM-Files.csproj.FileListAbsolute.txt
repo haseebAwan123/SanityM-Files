@@ -51,9 +51,12 @@ D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\ro
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\roslyn\VBCSCompiler.exe
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\roslyn\VBCSCompiler.exe.config
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Antlr3.Runtime.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\M-FilesApis.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\MFaaP.MFWSClient.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Microsoft.Web.Infrastructure.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Newtonsoft.Json.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\RestSharp.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.Helpers.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.Mvc.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.Optimization.dll
@@ -62,6 +65,7 @@ D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Sy
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.WebPages.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.WebPages.Razor.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\WebGrease.dll
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\M-FilesApis.pdb
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.Helpers.xml
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.Mvc.xml
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\System.Web.Optimization.xml
@@ -72,12 +76,8 @@ D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Sy
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Newtonsoft.Json.xml
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Antlr3.Runtime.pdb
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\obj\Debug\SanityM-Files.csprojAssemblyReference.cache
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\obj\Debug\SanityM-Files.csproj.CoreCompileInputs.cache
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\obj\Debug\SanityM-Files.csproj.CopyComplete
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\obj\Debug\SanityM-Files.dll
 D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\obj\Debug\SanityM-Files.pdb
-D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\M-FilesApis.dll
-D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\MFaaP.MFWSClient.dll
-D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\M-FilesApis.pdb
-D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\obj\Debug\SanityM-Files.csprojAssemblyReference.cache
-D:\MainCode\SanityMfiles\Cloned\SanityM-Files\SanityM-Files\SanityM-Files\bin\RestSharp.dll

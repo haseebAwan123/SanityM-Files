@@ -33,7 +33,7 @@
 
 <br />
 <br />
-
+<div></div>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link" id="home-tab" data-toggle="tab" href="#Recent" role="tab" aria-controls="Recent" aria-selected="true">Recent</a>
@@ -45,14 +45,14 @@
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Pinned" role="tab" aria-controls="Pinned" aria-selected="false">Pinned</a>
     </li>
 </ul>
-<div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade" id="Recent" role="tabpanel" aria-labelledby="Recent-tab">
+<div class="tab-content" id="myTabContent" >
+    <div class="tab-pane fade bodyh" id="Recent" role="tabpanel" aria-labelledby="Recent-tab">
         <div class="row">
             <div class="col">
-                1 of 3
+                <button type="button" class="btn btn-link" onclick="getData()">Link</button>
             </div>
-            <div class="col-5">
-                2 of 3 (wider)
+            <div class="col-5" id="bindData1">
+               
             </div>
             <div class="col">
                 3 of 3
@@ -60,80 +60,89 @@
         </div>
 
     </div>
-    <div class="tab-pane fade  show active" id="All" role="tabpanel" aria-labelledby="All-tab">
-        <div class="row">
+    <div class="tab-pane fade  show active bodyh" id="All" role="tabpanel" aria-labelledby="All-tab">
+        <div class="row" >
             <div class="col border-right">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            @{
-                                foreach (var item in Headers)
-                                {
-                                    var isVisible = item.Name == "Type" || item.Name == "Name" ? "visible" : "hidden";
-                                    if(isVisible == "visible")
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                @{
+                                    foreach (var item in Headers)
                                     {
-                                     <th scope="col" style="visibility:@isVisible">@item.Name</th>
+                                        var isVisible = item.Name == "Type" || item.Name == "Name" ? "visible" : "hidden";
+                                        if (isVisible == "visible")
+                                        {
+                                            <th scope="col" style="visibility:@isVisible">@item.Name</th>
+                                        }
                                     }
                                 }
+
+                                @*<th scope="col">Type</th>*@
+
+                            </tr>
+                        </thead>
+
+
+
+                        <tbody>
+                            @{
+                                foreach (var item in views)
+                                {
+                                    if (!object.ReferenceEquals(null, item.View))
+                                    {
+                                        var url = "/Home/getViewItems?VID=" + item.View.ID;
+                                        <tr>
+                                            <td><img src="http://127.0.0.1/assets/icons/svg/listing_common_view.svg" /></td>
+
+                                            <td><a href=@url>@item.View.Name</a></td>
+                                            <td>View</td>
+                                        </tr>
+                                    }
+                                    else if (!object.ReferenceEquals(null, item.PropertyFolder))
+                                    {
+
+                                        var url = "/Home/getSubViewItems?VID=" + VID + "&&LID=" + item.PropertyFolder.SerializedValue;
+                                        <tr>
+                                            <td><img src="http://127.0.0.1/assets/icons/svg/listing_common_view.svg" /></td>
+
+                                            <td><a href=@url>@item.PropertyFolder.DisplayValue</a></td>
+                                            <td>View</td>
+                                        </tr>
+                                    }
+                                    else if (!object.ReferenceEquals(null, item.ObjectVersion))
+                                    {
+
+                                        var url = "/Home/getMetaData?type=" + item.ObjectVersion.ObjVer.Type + "&&ID=" + item.ObjectVersion.ObjVer.ID + "&&version=" + item.ObjectVersion.ObjVer.Version;
+                                        <tr>
+                                            <td><img src="http://127.0.0.1/assets/icons/svg/default.svg" /></td>
+
+                                            @*<td><a href=@url>@item.ObjectVersion.Title</a></td>*@
+                                            <td><button type="button" class="btn btn-link" onclick="getData('@url')">@item.ObjectVersion.Title</button></td>
+                                            @*<td>View</td>*@
+                                        </tr>
+                                    }
+                                }
+
+
                             }
-
-                            @*<th scope="col">Type</th>*@
-
-                        </tr>
-                    </thead>
-                    
-                       
-
-                    <tbody>
-                        @{
-                            foreach (var item in views)
-                            {
-                                if (!object.ReferenceEquals(null, item.View))
-                                {
-                                    var url = "/Home/getViewItems?VID=" + item.View.ID;
-                                    <tr>
-                                        <td><img src="http://127.0.0.1/assets/icons/svg/listing_common_view.svg" /></td>
-
-                                        <td><a href=@url>@item.View.Name</a></td>
-                                        <td>View</td>
-                                    </tr>
-                                }
-                                else if (!object.ReferenceEquals(null, item.PropertyFolder))
-                                {
-
-                                    var url = "/Home/getSubViewItems?VID=" + VID + "&&LID=" + item.PropertyFolder.SerializedValue;
-                                    <tr>
-                                        <td><img src="http://127.0.0.1/assets/icons/svg/listing_common_view.svg" /></td>
-
-                                        <td><a href=@url>@item.PropertyFolder.DisplayValue</a></td>
-                                        <td>View</td>
-                                    </tr>
-                                }
-                                else if (!object.ReferenceEquals(null, item.ObjectVersion))
-                                {
-
-                                    var url = "/Home/getMetaData?type=" + item.ObjectVersion.ObjVer.Type + "&&ID=" + item.ObjectVersion.ObjVer.ID+"&&version="+ item.ObjectVersion.ObjVer.Version;
-                                    <tr>
-                                        <td><img src="http://127.0.0.1/assets/icons/svg/default.svg" /></td>
-
-                                        <td><a href=@url>@item.ObjectVersion.Title</a></td>
-                                        <td>View</td>
-                                    </tr>
-                                }
-                            }
+                        </tbody>
 
 
-                        }
-                    </tbody>
 
 
-                       
-
-                </table>
+                    </table>
+                </div>
+             
             </div>
-            <div class="col-5 border-right">
-                <table class="table">
+            <div class="col-5 border-right ">
+
+                <div class="table-wrapper-scroll-y my-custom-scrollbar" id="bindData">
+
+                </div>
+
+                @*<table class="table">
                     <thead>
                         <tr>
                             <th scope="col">MetaData</th>
@@ -141,9 +150,9 @@
                     </thead>
                 </table>
 
-                <table class="table">
+                <table class="table" >*@
                     
-                    <tbody>
+                    @*<tbody>
                         @{
                             if (Properties != null && Classes != null)
                             {
@@ -167,12 +176,11 @@
                                 </tr>
                             }
                         }
-                    </tbody>
+                    </tbody>*@
 
 
 
-
-                </table>
+                
 
 
             </div>
@@ -181,7 +189,7 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="Pinned" role="tabpanel" aria-labelledby="Pinned-tab">
+    <div class="tab-pane fade bodyh" id="Pinned" role="tabpanel" aria-labelledby="Pinned-tab">
         <div class="row">
             <div class="col">
                 1 of 3
@@ -195,6 +203,8 @@
         </div>
     </div>
 </div>
+
+
 
 @*<ul id="myUL">
         <li>

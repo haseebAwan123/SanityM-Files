@@ -1,9 +1,5 @@
 ﻿using MFaaP.MFWSClient;
 using SanityM_Files.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SanityM_Files.Controllers
@@ -49,14 +45,34 @@ namespace SanityM_Files.Controllers
             var properties = admin.getProperties("Admin", "123");
             var classes = admin.getClasses("Admin", "123");
             var res = objects.getObjectMetaData("Admin", "123",type,ID,version);
+
+            foreach (var item in res)
+            {
+                var dataType = item.TypedValue.DataType;
+                var isVisible = item.TypedValue.DataType;
+
+            }
             
             ViewBag.PropertyList = properties;
             ViewBag.Classes = classes;
+            ViewBag.MetaData = res;
+            
             ViewBag.Views = TempData["Views"];
             TempData["Views"] = ViewBag.Views;
-            ViewBag.MetaData = res;
-            return View("Index");
+            return PartialView("_Objects", res);
         }
 
+
+        [HttpGet]
+        public ActionResult getSubViewItems1(int VID, int LID)
+        {
+            CViews view = new CViews();
+            FolderContentItems res = view.getSubViewItems("Admin", "123", VID, LID);
+
+            ViewBag.Views = res;
+            TempData["Views"] = res;
+            return PartialView("_Objects", res);
+           
+        }
     }
 }
