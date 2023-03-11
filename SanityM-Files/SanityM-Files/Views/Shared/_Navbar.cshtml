@@ -72,14 +72,68 @@
             display: block;
         }
 
-
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #318ccc;
+        }
     </style>
 
 
 </head>
 
 <body>
+
     <div class="main">
+        <div>
+            <nav class="navbar navbar-expand-sm sticky">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="#"> <h1>M-Files</h1> </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </div>
+
+                <div class="container-fluid collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="col-lg-6">  <input class="form-control " type="search" placeholder="Search" aria-label="Search"></div>
+                  
+                 
+                    <div>
+                        <h1 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; ">+</h1>
+
+                        <div class="dropdown ">
+
+                            <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuButton" style="z-index:100">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Action</a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div>    </div>
+
+
+
+
+                </div>
+               
+
+
+            </nav>
+
+            <br />
+            
+        </div>
 
         @RenderBody()
     </div>
@@ -99,7 +153,7 @@
                 $.ajax({
                     type: "Get",
                     url: url,
-                   
+
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
