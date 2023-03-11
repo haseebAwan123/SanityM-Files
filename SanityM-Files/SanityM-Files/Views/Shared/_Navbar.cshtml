@@ -145,6 +145,44 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
 
+        function UpdateData(data) {
+            var pObj = {};
+            var o_id = document.getElementById("ID").value;
+            var o_type = document.getElementById("type").value;
+            data = data.substring(0, data.length - 1);
+            var arr = data.split(";");
+            for (var i = 0; i < arr.length; i++)
+            {
+                var id = 'p' + arr[i].toString();
+                //alert(arr[i].toString());
+                var value = document.getElementById(arr[i].toString()).value;
+                pObj[id] = value;
+            }
+            alert(JSON.stringify({ 'Data': JSON.stringify(pObj) }))
+            try {
+                //var vID = 2;
+                //var lID = 4;
+                //var url = "/Home/getSubViewItems1?VID=" + vID + "&&LID="+lID;
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SaveDetailedInfo",
+                    data: JSON.stringify({ 'Data': JSON.stringify(pObj), 'O_ID': o_id, 'type': o_type}),
+                    contentType: 'application/json',
+
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function (error, data) {
+                        alert("something went wrong: " + error);
+                    }
+                });
+            }
+            catch (e) {
+
+            }
+
+        }
+
         function getData(url) {
             try {
                 //var vID = 2;
@@ -171,6 +209,17 @@
 
             }
         }
+
+        function setValue(id) {
+            var multiSelectValue = document.getElementById(id).value;
+            var hidden_ID = id.split('-')[0];
+            var field = document.getElementById(hidden_ID).value;
+
+            document.getElementById(hidden_ID).value = field + '$' + multiSelectValue;
+
+            
+        }
+
 
 
         var toggler = document.getElementsByClassName("caret");

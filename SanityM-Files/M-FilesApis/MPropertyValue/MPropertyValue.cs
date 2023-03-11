@@ -86,5 +86,31 @@ namespace M_FilesApis.MPropertyValue
             return ValueList;
         }
 
+
+        public dynamic GetProperty(string baseUrl, string key,string id)
+        {
+            var propertyList = new PropertyDef();
+            try
+            {
+                var client = new RestClient(baseUrl + "/structure/properties/"+ id);
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("X-Authentication", key);
+                request.AddHeader("Cookie", "ASP.NET_SessionId=wlshnuqyiz3nwflld3dnuyr5");
+                IRestResponse response = client.Execute(request);
+                //dynamic responseContent = JsonConvert.DeserializeObject(response.Content);
+                propertyList = JsonConvert.DeserializeObject<PropertyDef>(response.Content);
+
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+
+            }
+            return propertyList;
+        }
+
     }
 }
