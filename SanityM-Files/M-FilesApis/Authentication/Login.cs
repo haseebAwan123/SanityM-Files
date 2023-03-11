@@ -19,7 +19,7 @@ namespace M_FilesApis.Authentication
         {
             string Token = "";
             try
-            {
+            { 
                 var jsonSerializer = JsonSerializer.CreateDefault();
 
                 var auth = new
